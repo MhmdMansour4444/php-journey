@@ -1,7 +1,27 @@
 <?php
 
+function splitString($delimiter, $string) {
+    $result = [];
+    $current = '';
+
+    for ($i = 0; $i < strlen($string); $i++) {
+        if ($string[$i] == $delimiter) {
+            $result[] = $current;
+            $current = '';
+        } else {
+            $current .= $string[$i];
+        }
+    }
+
+    if (!empty($current)) {
+        $result[] = $current;
+    }
+
+    return $result;
+}
+
 function evaluateOperation($operation) {
-    $parts = explode(' ', $operation);
+    $parts = splitString(' ', $operation);
 
     if (count($parts) != 3) {
         return "Error: Invalid operation format";
@@ -20,7 +40,7 @@ function evaluateOperation($operation) {
             return $operand1 * $operand2;
         case '/':
             if ($operand2 == 0) {
-                return "Error: Division by zero";
+                return "Error: You divided by zero :/";
             }
             return $operand1 / $operand2;
         default:
