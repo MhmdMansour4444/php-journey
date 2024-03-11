@@ -4,7 +4,7 @@ function splitString($delimiter, $string) {
     $result = [];
     $current = '';
 
-    for ($i = 0; $i < strlen($string); $i++) {
+    for ($i = 0; $i < strlen($string); $i++) { 
         if ($string[$i] == $delimiter) {
             $result[] = $current;
             $current = '';
